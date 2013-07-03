@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" id="ng:app" ng-app="livebet">
+    <head>
+        <!--[if lte IE 8]>
+        <script>document.createElement('ng-form');</script>
+        <![endif]-->
+        <title>HTML5 Photo finish</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootswatch/2.3.2/cosmo/bootstrap.min.css">
+        <link rel="stylesheet" href="/style.css" />
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/3.2.0/css/font-awesome.min.css">
+    </head>
+    <body>
+        <div class="container">
+            <div class="masthead">
+                <h3 class="muted">HTML5 Photo finish</h3>
+                <div class="navbar">
+                    <div class="navbar-inner">
+                        <div class="container" id="controls">
+                            <div class="btn-group">
+                                <a href="#controls" id="playButton" class="btn btn-success"> <i class="icon-play"></i> Play</a>
+                                <a href="#controls" id="pauseButton" class="btn btn-warning"> <i class="icon-pause"></i> Pause</a>
+                                <a href="#controls" id="stopButton" class="btn btn-danger"> <i class="icon-stop"></i> Stop</a>
+                                <a href="#controls" id="previewButton" class="btn"> <i class="icon-picture"></i> Preview</a>
+                            </div>
+                            <div class="btn-group">
+                                <a href="#controls" id="resolutionButton320" resolution="320x240" class="resolution btn btn-small"> 320x240 </a>
+                                <a href="#controls" id="resolutionButton640" resolution="640x480" class="resolution btn btn-small btn-info"> 640x480 </a>
+                                <a href="#controls" id="resolutionButton1280" resolution="1280x960" class="resolution btn btn-small"> 1280x960 </a>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- /.navbar -->
+            </div>
+        </div>
+        <div class="container text-center" >
+            <div class="jumbotron ">
+                <h3> HTML5 proof of concept of <a href="http://en.wikipedia.org/wiki/Photo_finish">"Photo finish"</a> web cam. </h3>
+                <p>
+                    Working only on Chrome, Firefox and Opera. It should work on IE.
+                </p>
+                <p>
+                    <a class="btn btn-large btn-primary" href="https://bitbucket.org/miroslavmagda/photofinish">Get source code</a>
+                </p>
+                <p>
+                    <small>To run demo you must allow to use web cam. Then press play and enjoy.</small>
+                </p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row text-center" id="source">
+                <div class="span12">
+                    <video class="video" id="videoSource" style="display: none;" width="640" height="480"></video>
+                    <canvas class="canvas" id="canvasSource" style="display: none;" width="640" height="480"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="container"id="overview">
+            <h3>Preview</h3>
+            <div class="row text-center" >
+                <p>
+                    <canvas class="canvas" id="canvasDest" width="640" height="480"></canvas>
+                </p>
+            </div>
+        </div>
+        <div class="container results">
+            <div class="row-fluid text-left">
+                <p>
+                    <div id="results"></div>
+                </p>
+            </div>
+        </div>
+
+        <div class="container results">
+            <hr>
+            <small> © <a href="http://blog.ejci.net">Miroslav Magda</a> 2013 </small>
+        </div>
+        <script src="//code.jquery.com/jquery-1.9.1.min.js"></script>
+        <!--script src="//ajax.googleapis.com/ajax/libs/angularjs/1.1.4/angular.min.js"></script-->
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script src="/app.js"></script>
+
+    </body>
+</html>

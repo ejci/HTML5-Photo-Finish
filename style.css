@@ -1,0 +1,27 @@
+body {
+	/* 60px to make the container go all the way to the bottom of the topbar */
+}
+.video {
+	border: 1px solid black;
+}
+.canvas {
+	border: 1px solid black;
+}
+#controls {
+	display: none;
+}
+#source {
+	display: none;
+}
+#overview {
+	display: none;
+}
+.container .results{
+}
+#results {
+	
+}
+.result {
+	width: 10%;
+	height: 10%;
+}
