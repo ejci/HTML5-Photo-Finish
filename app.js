@@ -1,9 +1,9 @@
 (function(win, doc, nav) {"use strict";
-    //X browser
+    //X bcolser
     win.requestAnimationFrame = win.requestAnimationFrame || win.msRequestAnimationFrame || win.mozRequestAnimationFrame || win.webkitRequestAnimationFrame;
     nav.getUserMedia = nav.getUserMedia || nav.oGetUserMedia || nav.msGetUserMedia || nav.mozGetUserMedia || nav.webkitGetUserMedia;
 
-    // Fallback for browsers that don't provide
+    // Fallback for bcolsers that don't provide
     // the requestAnimationFrame API (e.g. Opera).
     if (!win.requestAnimationFrame) {
         win.requestAnimationFrame = function(callback) {
@@ -11,7 +11,7 @@
         };
     }
 
-    // Fallback for browsers that don't provide
+    // Fallback for bcolsers that don't provide
     // the URL.createObjectURL API (e.g. Opera).
     if (!win.URL || !win.URL.createObjectURL) {
         win.URL = win.URL || {};
@@ -42,9 +42,7 @@
         var stopButton = $('#stopButton');
         var previewButton = $('#previewButton');
         var resolutionsButton = $('.resolution');
-        var resolutionButton320 = $('#resolutionButton320');
-        var resolutionButton640 = $('#resolutionButton640');
-        var resolutionButton1280 = $('#resolutionButton1280');
+        var lineSizesButton = $('.lineSize');
         var enableControl = function() {
             //controls.show();
             $('#controls').show();
@@ -68,6 +66,11 @@
                 $(e.target).toggleClass('active');
                 overview.toggle();
                 //opt.preview();
+            });
+            lineSizesButton.click(function(e) {
+                var val = $(e.target).text().trim();
+                $('#lineSize b').html(val);
+                $('#lineSize input').val(val);
             });
             resolutionsButton.click(function(e) {
                 stopButton.trigger('click')
@@ -127,7 +130,9 @@
     function step() {
         if (capturing) {
             requestAnimationFrame(step);
-            draw();
+            draw(function() {
+                //requestAnimationFrame(step);
+            });
         }
     }
 
@@ -135,7 +140,7 @@
         if (!capturing) {
             width = video.width;
             height = video.height;
-
+            size = parseInt($('#lineSize input').val(), 10);
             capturing = true;
             step();
         }
@@ -147,31 +152,44 @@
 
     function stopCapture() {
         //stop
-        rows = 0;
+        cols = 0;
         capturing = false;
         //empty
         contextDest.clearRect(0, 0, width, height);
     }
 
-    var rows = 0;
-    function draw() {
-        var size = 2;
+    //counter for "frame" 
+    var cols = 0;
+    //line width
+    var size = 1;
+    function draw(cb) {
+        //draw temporary image from video
         context.drawImage(video, 0, 0, width, height);
-        var snapshot = context.getImageData(width - 100, 0, size, height);
-        //replaceGreen(frame.data, copyFrame.data);
-        //var data = getPixels(frame.data);
+        //Get vertical line of pixels (center of webcam video)
+        var snapshot = context.getImageData(width / 2, 0, size, height);
+        //move image to right
         var oldImage = contextDest.getImageData(0, 0, width, height);
         contextDest.putImageData(oldImage, size, 0);
+        //prepend this line to image
         contextDest.putImageData(snapshot, 0, 0);
-        rows += size;
-        if (rows >= width) {
+        //increment "frame" cols counter
+        cols += size;
+        //if count of cols is the same as image width than save this frame
+        if (cols >= width) {
+            //convert image to base64 string
             var url = canvasDest.toDataURL("image/png");
-            var newImg = $('<img class="result"/>');
+            //create image from base64 string
+            var newImg = $('<img/>');
+            newImg.attr('class', 'result');
             newImg.attr('src', url);
+            //append to rersults
             $('#results').prepend(newImg);
             newImg = null;
-            rows = 0;
+            //reset "frame" counter 
+            cols = 0;
         }
+        //call calbback
+        cb();
     }
 
     //init app

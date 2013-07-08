@@ -6,6 +6,7 @@
         <![endif]-->
         <title>HTML5 Photo finish</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootswatch/2.3.2/cosmo/bootstrap.min.css">
         <link rel="stylesheet" href="style.css" />
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/3.2.0/css/font-awesome.min.css">
@@ -27,6 +28,29 @@
                                 <a href="#controls" id="resolutionButton320" resolution="320x240" class="resolution btn btn-small"> 320x240 </a>
                                 <a href="#controls" id="resolutionButton640" resolution="640x480" class="resolution btn btn-small btn-info"> 640x480 </a>
                                 <a href="#controls" id="resolutionButton1280" resolution="1280x960" class="resolution btn btn-small"> 1280x960 </a>
+                            </div>
+                            <div class="btn-group">
+                                <button class="btn btn-small" id="lineSize" >
+                                    <input type="hidden" value="1"/>
+                                    Line size: <b>1</b>px
+                                </button>
+                                <button class="btn btn-small dropdown-toggle" data-toggle="dropdown">
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="#controls" class="lineSize"> 1 </a>
+                                    </li>
+                                    <li>
+                                        <a href="#controls" class="lineSize"> 2 </a>
+                                    </li>
+                                    <li>
+                                        <a href="#controls" class="lineSize"> 5 </a>
+                                    </li>
+                                    <li>
+                                        <a href="#controls" class="lineSize"> 10 </a>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </div>
@@ -74,7 +98,7 @@
 
         <div class="container results">
             <hr>
-            <small> © <a href="http://blog.ejci.net">Miroslav Magda</a> 2013 </small>
+            <small>&copy; <a href="http://blog.ejci.net">Miroslav Magda</a> 2013 </small>
         </div>
         <script src="//code.jquery.com/jquery-1.9.1.min.js"></script>
         <!--script src="//ajax.googleapis.com/ajax/libs/angularjs/1.1.4/angular.min.js"></script-->
