@@ -158,7 +158,7 @@
         contextDest.clearRect(0, 0, width, height);
     }
 
-    //counter for "frame" 
+    //counter for "frame"
     var cols = 0;
     //line width
     var size = 1;
@@ -185,7 +185,7 @@
             //append to rersults
             $('#results').prepend(newImg);
             newImg = null;
-            //reset "frame" counter 
+            //reset "frame" counter
             cols = 0;
         }
         //call calbback
